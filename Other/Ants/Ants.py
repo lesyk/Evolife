@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##############################################################################
 # EVOLIFE  www.dessalles.fr/Evolife                    Jean-Louis Dessalles  #
 #            Telecom ParisTech  2014                       www.dessalles.fr  #
@@ -27,6 +28,8 @@ the collective may discover optimal paths.
 import sys
 from time import sleep
 import random
+import threading
+import time
 		
 sys.path.append('..')
 sys.path.append('../../..')
@@ -131,6 +134,16 @@ class LandCell(Landscapes.LandCell):
 			return True
 		return False
 
+def add_food(self):
+    #print "food added to " + str(self)
+    Observer.recordChanges((self.Name, self.locate() + FoodAspect))
+    Land.food(self.locate(), +1)
+
+    #print "food added to " + str(self)
+    time.sleep(Gbl.Parameter('FoodRenewTime'))
+    if BackgroundProcesses == True:
+	add_food(self)
+
 class FoodSource:
 	""" Location where food is available
 	"""
@@ -141,6 +154,11 @@ class FoodSource:
 		self.Radius = (Gbl.Parameter('FoodSourceSize')+1)//2
 		self.Distribution = Gbl.Parameter('FoodQuantity') // ((2*self.Radius+1) ** 2)
 		self.Area = []
+
+		#adding background processig of food addition
+		t = threading.Timer(Gbl.Parameter('FoodRenewTime'), add_food, [self])
+		t.start() 
+		
 
 	def locate(self, Location = None):
 		if Location:
@@ -160,6 +178,8 @@ class Landscape(Landscapes.Landscape):
 		# Positioning Food Sources
 		self.FoodSourceNumber = NbFoodSources
 		self.FoodSources = []
+		self.LastFood = time.time() + Gbl.Parameter('TimeRunningOutOfFood')
+
 		for FSn in range(self.FoodSourceNumber):
 			FS = FoodSource('FS%d' % FSn)
 			FS.locate((random.randint(0,Size-1),random.randint(0,Size-1)))
@@ -281,8 +301,10 @@ class Ant(EI.Individual):
 			Observer.recordChanges((self.ID, self.location + AntAspectWhenLaden)) # for ongoing display of ants
 		else:
 			# Home reached
-			self.PPStock = Gbl.Parameter('PPMax') 
+			self.PPStock = Gbl.Parameter('PPMax')
 			self.Action = 'Move'
+			#print Land.LastFood
+			Land.LastFood = time.time()
 		
 	def moves(self):
 		""" Basic behavior: move by looking for neighbouring unvisited cells.
@@ -353,9 +375,12 @@ class Population(EP.Population):
 		if Moves > self.AllMoved:
 			Land.evaporation()
 			self.AllMoved = Moves
-		if (Land.foodQuantity() <= 0):	self.SimulationEnd -= 1
-		return self.SimulationEnd > 0	 # stops the simulation when True
-
+		if (Land.foodQuantity() <= 0):
+			self.SimulationEnd -= 1
+		
+		print time.time() - Land.LastFood
+		return False if time.time() - Land.LastFood > Gbl.Parameter('StartTimeForSearching') else True
+		#return self.SimulationEnd > 0	# stops the simulation when True
 		
 if __name__ == "__main__":
 	print __doc__
@@ -363,6 +388,7 @@ if __name__ == "__main__":
 	#############################
 	# Global objects			#
 	#############################
+	BackgroundProcesses = True		#flag for background processes
 	Gbl = EPar.Parameters('_Params.evo')	# Loading global parameter values
 	Observer = Ant_Observer(Gbl)   # Observer contains statistics
 	Land = Landscape(Gbl.Parameter('LandSize'), Gbl.Parameter('NbFoodSources'))
@@ -374,6 +400,7 @@ if __name__ == "__main__":
 
 	EW.Start(Pop.One_Decision, Observer, Capabilities='RPC')
 
+	BackgroundProcesses = False		#stop all background processes
 	print "Bye......."
 	sleep(1.0)
 ##	raw_input("\n[Return]")

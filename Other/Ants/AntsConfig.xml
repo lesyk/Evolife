@@ -33,6 +33,16 @@
 			<Value>.</Value>
 		</Parameter>
 		<Parameter>
+			<Name>StartTimeForSearching</Name>
+			<Description><info><![CDATA[Time for first searching of food]]></info></Description>
+			<Value>10</Value>
+		</Parameter>
+		<Parameter>
+			<Name>TimeRunningOutOfFood</Name>
+			<Description><info><![CDATA[How long colony can live without food]]></info></Description>
+			<Value>10</Value>
+		</Parameter>
+		<Parameter>
 			<Name>Target</Name>
 			<Description><info><![CDATA[Programme to be executed]]></info></Description>
 			<Value>Ants.py</Value>
@@ -80,7 +90,12 @@
 			<Parameter>
 				<Name>FoodQuantity</Name>
 				<Description><info><![CDATA[Quantity of food available at food source]]></info></Description>
-				<Value>20</Value>
+				<Value>10</Value>
+			</Parameter>
+			<Parameter>
+				<Name>FoodRenewTime</Name>
+				<Description><info><![CDATA[0 - no food renew, 1-100 time for renew]]></info></Description>
+				<Value>10</Value>
 			</Parameter>
 		</Parameter>
 		<Parameter>
@@ -98,7 +113,7 @@
 			<Parameter>
 				<Name>Evaporation</Name>
 				<Description><info><![CDATA[absolute amount of pheromone decrease per time unit]]></info></Description>
-				<Value>20</Value>
+				<Value>5</Value>
 			</Parameter>
 			<Parameter>
 				<Name>SniffingDistance</Name>
