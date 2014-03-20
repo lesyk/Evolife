@@ -1,0 +1,11 @@
+ApplicationDir	.
+CASize	256
+DisplayPeriod	5
+Icon	ElementaryCARule030_700.gif
+Rule	30
+RunConfigFile	_Params.evo
+ScenarioFileName	CellularAutomaton.evo
+ScenarioName	CellularAutomaton
+Target	CellularAutomaton.py
+TimeLimit	256
+Title	Evolife_Cellular_Automaton

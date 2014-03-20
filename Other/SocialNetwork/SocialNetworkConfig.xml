@@ -1,0 +1,180 @@
+<Config>
+	<Parameter>
+		<Name>PARAMETERS</Name>
+		<Description><info><![CDATA[This is a configuration file editor designed to choose parameter values before launching Evolife simulations.<br><br>Its use is rather intuitive. You may click directly on values you want to change, or navigate with arrows and use the [F2] key to edit values.<br><br>Pay attention to explanations displayed in this panel.]]></info></Description>
+	</Parameter>
+	<Parameter>
+		<Name>Scenario</Name>
+		<Parameter>
+			<Name>ScenarioName</Name>
+			<Value>Grooming</Value>
+		</Parameter>
+		<Parameter>
+			<Name>ScenarioFileName</Name>
+			<Value>Grooming_Typical.evo</Value>
+		</Parameter>
+	</Parameter>
+	<Parameter>
+		<Name>Ecology</Name>
+		<Parameter>
+			<Name>NbAgents</Name>
+			<Description><info><![CDATA[NbAgents]]></info></Description>
+			<Value>100</Value>
+		</Parameter>
+		<Parameter>
+			<Name>AgeMax</Name>
+			<Description><info><![CDATA[after that age, the agent is reborn]]></info></Description>
+			<Value>1000</Value>
+		</Parameter>
+	</Parameter>
+	<Parameter>
+		<Name>Sociology</Name>
+		<Parameter>
+			<Name>MaxGurus</Name>
+			<Description><info><![CDATA[Maximum number of friends]]></info></Description>
+			<Value>1</Value>
+		</Parameter>
+		<Parameter>
+			<Name>MaxFollowers</Name>
+			<Description><info><![CDATA[Maximum number of followers]]></info></Description>
+			<Value>1</Value>
+		</Parameter>
+		<Parameter Scenario="CostlySignal">
+			<Name>SampleSize</Name>
+			<Description><info><![CDATA[Number of candidates to choose a friend from]]></info></Description>
+			<Value>5</Value>
+		</Parameter>
+		<Parameter Scenario="Grooming">
+			<Name>RankEffect</Name>
+			<Description><info><![CDATA[Coefficient in% affecting time devoted to friends depending on rank]]></info></Description>
+			<Value>80</Value>
+		</Parameter>
+		<Parameter Scenario="Grooming">
+			<Name>SocialOverlap</Name>
+			<Description><info><![CDATA[When 100, additional friends do not diminish time devoted to previous friends]]></info></Description>
+			<Value>100</Value>
+		</Parameter>
+		<Parameter Scenario="Grooming">
+			<Name>SocialSymmetry</Name>
+			<Description><info><![CDATA[Forces symmetrical ranks in friendship negotiation]]></info></Description>
+			<Value>0</Value>
+		</Parameter>
+		<Parameter Scenario="Grooming">
+			<Name>Transparency</Name>
+			<Description><info><![CDATA[For tests: if not 0, true competence is seen during interactions]]></info></Description>
+			<Value>0</Value>
+		</Parameter>
+	</Parameter>
+	<Parameter>
+		<Name>Interactions</Name>
+		<Parameter>
+			<Name>SignallingCost</Name>
+			<Description><info><![CDATA[Proportional cost of investment in signalling]]></info></Description>
+			<Value>60</Value>
+		</Parameter>
+		<Parameter Scenario="CostlySignal">
+			<Name>JoiningBonus</Name>
+			<Description><info><![CDATA[Bonus for attracting a disciple]]></info></Description>
+			<Value>20</Value>
+		</Parameter>
+		<Parameter Scenario="Grooming">
+			<Name>CompetenceImpact</Name>
+			<Description><info><![CDATA[The relevant factor is CompetenceImpact/Signalling cost]]></info></Description>
+			<Value>100</Value>
+		</Parameter>
+		<Parameter>
+			<Name>BottomCompetence</Name>
+			<Description><info><![CDATA[minimum competence of individuals]]></info></Description>
+			<Value>0</Value>
+		</Parameter>
+		<Parameter>
+			<Name>NbRuns</Name>
+			<Description><info><![CDATA[number of social interactions per learning episode]]></info></Description>
+			<Value>100</Value>
+		</Parameter>
+	</Parameter>
+	<Parameter>
+		<Name>Learning</Name>
+		<Parameter>
+			<Name>MemorySpan</Name>
+			<Description><info><![CDATA[memory of past success]]></info></Description>
+			<Value>10</Value>
+		</Parameter>
+		<Parameter>
+			<Name>LearningConservatism</Name>
+			<Description><info><![CDATA[Importance in % of immediate past solution]]></info></Description>
+			<Value>20</Value>
+		</Parameter>
+		<Parameter>
+			<Name>LearnHorizon</Name>
+			<Description><info><![CDATA[Beyond that portion in % of TimeLimit, individuals are born adults]]></info></Description>
+			<Value>60</Value>
+		</Parameter>
+		<Parameter>
+			<Name>LearningSpeed</Name>
+			<Description><info><![CDATA[Max additive exploration (for adults)]]></info></Description>
+			<Value>5</Value>
+		</Parameter>
+		<Parameter>
+			<Name>Infancy</Name>
+			<Description><info><![CDATA[Percent of AgeMax during which learning is faster]]></info></Description>
+			<Value>15</Value>
+		</Parameter>
+		<Parameter>
+			<Name>ImitationStrength</Name>
+			<Description><info><![CDATA[Influence of neighbours in %]]></info></Description>
+			<Value>70</Value>
+		</Parameter>
+	</Parameter>
+	<Parameter>
+		<Name>Simulation</Name>
+		<Parameter>
+			<Name>BatchMode</Name>
+			<Description><info><![CDATA[set BatchMode to 1 to prevent display]]></info></Description>
+			<Value>0</Value>
+		</Parameter>
+		<Parameter>
+			<Name>TimeLimit</Name>
+			<Description><info><![CDATA[Max number of simulation steps]]></info></Description>
+			<Value>3000</Value>
+		</Parameter>
+		<Parameter>
+			<Name>ApplicationDir</Name>
+			<Description><info><![CDATA[Directory where the simulation can be found]]></info></Description>
+			<Value>.</Value>
+		</Parameter>
+		<Parameter>
+			<Name>Target</Name>
+			<Description><info><![CDATA[Programme to be executed]]></info></Description>
+			<Value>SocialNetwork.py</Value>
+		</Parameter>
+		<Parameter>
+			<Name>RunConfigFile</Name>
+			<Description><info><![CDATA[Parameter values that will be read by the programme]]></info></Description>
+			<Value>_Params.evo</Value>
+		</Parameter>
+	</Parameter>
+	<Parameter>
+		<Name>Display</Name>
+		<Parameter>
+			<Name>DisplayPeriod</Name>
+			<Description><info><![CDATA[Display period]]></info></Description>
+			<Value>10</Value>
+		</Parameter>
+		<Parameter>
+			<Name>Title</Name>
+			<Description><info><![CDATA[Name of the present Configuration Editor]]></info></Description>
+			<Value>Evolife_Social_Network</Value>
+		</Parameter>
+		<Parameter>
+			<Name>Icon</Name>
+			<Description><info><![CDATA[local path to window icon]]></info></Description>
+			<Value>social-media-social-networking-connections.jpg</Value>
+		</Parameter>
+		<Parameter>
+			<Name>Lines</Name>
+			<Description><info><![CDATA[Toggle lines to best friend in display]]></info></Description>
+			<Value>1</Value>
+		</Parameter>
+	</Parameter>
+</Config>

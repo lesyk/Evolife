@@ -1,0 +1,16 @@
+BatchMode	1
+CostlySignal	1
+DisplayPeriod	10
+Infancy	20
+JoiningBonus	20
+LearnHorizon	10000
+MaxFollowers	3 6 8
+MemorySpan	10 50
+RunConfigFile	_Params.evo
+ScenarioFileName	CostlySignal.evo
+ScenarioName	CostlySignal
+SignallingCost	40 60 80 100
+Target	SocialNetwork.py
+TimeLimit	800
+Title	Evolife_Social_Network
+

@@ -1,0 +1,39 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:annotation>
+    <xsd:documentation xml:lang="en">
+     Configuration schema for Evolife.
+     http://www.dessalles.fr/Evolife
+    </xsd:documentation>
+  </xsd:annotation>
+
+  <xsd:element name="Config">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="Parameter" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="Parameter" type="ParameterType"/>
+
+  <xsd:complexType name="DescriptionType">
+	<xsd:sequence>
+		<xsd:element name="info" type="xsd:string" minOccurs="0"/>
+	</xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ParameterType">
+    <xsd:sequence>
+      <xsd:element name="Name" type="xsd:string"/>
+      <xsd:element name="Description" type="DescriptionType" minOccurs="0"/>
+      <xsd:element name="Value" type="xsd:string" minOccurs="0"/>
+	  <xsd:element ref="Parameter" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="Scenario" type="xsd:string" use="optional"/>
+  </xsd:complexType>
+
+
+  
+
+</xsd:schema>
